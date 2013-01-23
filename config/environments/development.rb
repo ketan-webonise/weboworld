@@ -34,4 +34,7 @@ Weboworld::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  #adding devise mailer configuration
+  config.action_mailer.default_url_options = { :host => 'local.weboworld.com' }
 end
