@@ -2,6 +2,7 @@ Weboworld::Application.routes.draw do
 
   devise_for :users,  :controllers => { :passwords => "sessions", :omniauth_callbacks => "users/omniauth_callbacks"} do
   end
+  #match "/invites" => "invites#index"
   #resources :callbacks
   # The priority is based upon order of creation:
   # first created -> highest priority.

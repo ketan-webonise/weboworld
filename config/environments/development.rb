@@ -39,7 +39,7 @@ Weboworld::Application.configure do
   APP_ID = '179957970442.apps.googleusercontent.com'
   APP_SECRET = 'g06erxn7G6xL8tGxwNHw4Onp'
 
-  #adding devise mailer configuration
+  #adding users mailer configuration
   config.action_mailer.default_url_options = { :host => 'local.weboworld.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {

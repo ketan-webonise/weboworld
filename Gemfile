@@ -28,6 +28,7 @@ end
 #authentication gems
 gem 'devise'
 gem "omniauth-google-oauth2"
+#gem 'gmail-contacts', :require => "gmail-contacts"
 
 gem 'jquery-rails'
 
