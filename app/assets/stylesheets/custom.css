@@ -1,0 +1,36 @@
+/*Header*/
+#webo-navbar-inner{
+
+}
+#webo-navbar #webo-brand{
+    color: #ffffff;
+}
+#webo-navbar-inner{
+    background-image: -webkit-linear-gradient(top, #862e5e, #772953);
+}
+.navbar .nav > li > a{
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    text-shadow: none;
+}
+/*footer*/
+#webo_footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #90ee90;
+    height: 60px;
+}
+
+.webo_footer_container  {
+    display: block;
+}
+
+.webo_muted{
+    float: right;
+    margin-right: 0px;
+    color: #000000;
+    margin-top: 35px;
+}

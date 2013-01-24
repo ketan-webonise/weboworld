@@ -25,8 +25,9 @@ group :assets do
 
 end
 
-#adding devise gem
+#authentication gems
 gem 'devise'
+gem "omniauth-google-oauth2"
 
 gem 'jquery-rails'
 
