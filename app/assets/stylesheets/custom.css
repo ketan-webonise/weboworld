@@ -14,6 +14,15 @@
     color: #ffffff;
     text-shadow: none;
 }
+/*ServerSide error*/
+#error_explanation > h2{
+    font-size: 15px;
+    color: #dd4814;
+}
+
+#error_explanation ul li {
+    float: none; color: red; padding-left: .5em;
+}
 /*footer*/
 #webo_footer {
     position: fixed;
