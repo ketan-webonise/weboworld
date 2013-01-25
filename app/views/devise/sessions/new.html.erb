@@ -15,3 +15,17 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<script type="text/javascript">
+   $(document).ready(function() {
+       var user_email = new LiveValidation('user_email');
+       user_email.add( Validate.Email );
+       user_email.add( Validate.Presence );
+
+       var user_password = new LiveValidation('user_password')
+       user_password.add(Validate.Presence );
+       user_password.add(Validate.Length, {minimum: 6});
+
+
+   });
+</script>

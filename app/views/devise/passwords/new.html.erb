@@ -4,9 +4,17 @@
   <%= devise_error_messages! %>
 
   <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+  <%= f.text_field :email, :autofocus => true %></div>
 
   <div><%= f.submit "Send me reset password instructions" %></div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var user_email = new LiveValidation('user_email');
+        user_email.add( Validate.Presence );
+        user_email.add( Validate.Email );
+    });
+</script>

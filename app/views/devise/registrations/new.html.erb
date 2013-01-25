@@ -4,7 +4,7 @@
   <%= devise_error_messages! %>
 
   <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+  <%= f.text_field :email, :autofocus => true %></div>
 
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>
@@ -16,3 +16,22 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var user_email = new LiveValidation('user_email');
+        user_email.add( Validate.Presence );
+        user_email.add( Validate.Email );
+
+        var user_password = new LiveValidation('user_password')
+        user_password.add(Validate.Presence );
+        user_password.add(Validate.Length, {minimum: 6});
+
+        var user_password_confirmation = new LiveValidation('user_password_confirmation');
+        user_password_confirmation.add(Validate.Presence );
+        user_password_confirmation.add( Validate.Confirmation, { match: 'user_password' } );
+
+
+
+    });
+</script>

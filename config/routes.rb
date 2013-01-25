@@ -4,6 +4,7 @@ Weboworld::Application.routes.draw do
 
   match "/googleauth" => "import#authorise"
   match "/importcontacts" => "import#authenticate"
+  match "/invite_manually" => "invites#invite_manually"
   #match "/invites" => "invites#index"
   #resources :callbacks
   # The priority is based upon order of creation:

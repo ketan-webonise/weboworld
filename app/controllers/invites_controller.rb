@@ -4,4 +4,8 @@ class InvitesController < ApplicationController
     #@contacts = GmailContacts::Google.new("some_token").contacts
     #logger.inspect("#######################################{@contacts.info}");
   end
+
+  def invite_manually
+
+  end
 end
