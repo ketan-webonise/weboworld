@@ -24,7 +24,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Invite Friends <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><%#= link_to "Invite your Gmail contacts", GmailContacts::Google.authentication_url("http://local.weboworld.com/invites") %></li>
+                  <li><%= link_to "Invite Gmail contacts", importcontacts_path %></li>
                   <li><%= link_to "Invite Manually" , :class => "" %></li>
                 </ul>
               </li>

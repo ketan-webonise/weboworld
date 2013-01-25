@@ -1,7 +1,9 @@
 Weboworld::Application.routes.draw do
 
-  devise_for :users,  :controllers => { :passwords => "sessions", :omniauth_callbacks => "users/omniauth_callbacks"} do
-  end
+  devise_for :users,  :controllers => { :passwords => "sessions", :omniauth_callbacks => "users/omniauth_callbacks"}
+
+  match "/googleauth" => "import#authorise"
+  match "/importcontacts" => "import#authenticate"
   #match "/invites" => "invites#index"
   #resources :callbacks
   # The priority is based upon order of creation:

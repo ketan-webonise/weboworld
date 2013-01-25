@@ -1,7 +1,7 @@
 class InvitesController < ApplicationController
   def index
-    token = params[:token]
+    #token = params[:token]
     #@contacts = GmailContacts::Google.new("some_token").contacts
-    logger.inspect("#######################################{@contacts.info}");
+    #logger.inspect("#######################################{@contacts.info}");
   end
 end
