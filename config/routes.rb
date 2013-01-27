@@ -2,6 +2,20 @@ Weboworld::Application.routes.draw do
 
   devise_for :users,  :controllers => { :passwords => "sessions", :omniauth_callbacks => "users/omniauth_callbacks"}
 
+  #resources :import do
+  #  collection do
+  #    get :authorise
+  #    get :authenticate
+  #  end
+  #end
+  #
+  resources :invites do
+    collection do
+      #get :invite_manually, :as => "/invite_manually"
+      get :search_emails
+      get :send_mail
+    end
+  end
   match "/googleauth" => "import#authorise"
   match "/importcontacts" => "import#authenticate"
   match "/invite_manually" => "invites#invite_manually"
