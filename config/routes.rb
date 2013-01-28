@@ -2,6 +2,10 @@ Weboworld::Application.routes.draw do
 
   devise_for :users,  :controllers => { :passwords => "sessions", :omniauth_callbacks => "users/omniauth_callbacks"}
 
+  resources :users do
+    resources :posts
+  end
+
   #resources :import do
   #  collection do
   #    get :authorise

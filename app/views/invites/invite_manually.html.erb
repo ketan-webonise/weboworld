@@ -1,5 +1,5 @@
 <div class="span3 offset1">
-  <%= form_tag send_mail_invites_path, :method => :get do%>
+  <%= form_tag send_mail_invites_path(@emails), :method => :get do%>
       <fieldset>
         <legend>Invites Friends</legend>
         <p>
@@ -14,6 +14,9 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#email').tokenInput('/invites/search_emails.json', { crossDomain: false });
+        $('#email').tokenInput('/invites/search_emails.json', {
+            crossDomain: false,
+            prePopulate: $("#email").data("pre" )
+        });
     });
 </script>

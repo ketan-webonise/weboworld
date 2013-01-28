@@ -49,7 +49,7 @@ class ImportController < ApplicationController
     rescue Exception => ex
       ex.message
     ensure
-      redirect_to root_path , :notice => "Invite or follow your Google contacts."
+      redirect_to root_path , :notice => "Invitation has been sent to your Google contacts."
     end
   end
 end

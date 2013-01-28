@@ -1,0 +1,18 @@
+<div class="span7">
+
+  <div class="well the-fieldset">
+    <div id="heading_recent_post">
+      <legend class="the-legend"> RECENT POST</legend>
+    </div>
+    <div class="pagination">
+      <ol class="posts">
+        <li>
+          <span class="content"><%= @post.description %></span>
+            <span class="timestamp">
+                Posted <%= time_ago_in_words(@post.created_at) %> ago.
+            </span>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
