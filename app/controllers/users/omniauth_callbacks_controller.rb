@@ -4,7 +4,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.persisted?
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Google"
       sign_in @user, :event => :authentication
-      redirect_to new_user_post_path(@user)
+      redirect_to user_posts_path(@user)
     else
       session["users.google_data"] = request.env["omniauth.auth"]
       redirect_to new_user_registration_url

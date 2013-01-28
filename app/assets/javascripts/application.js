@@ -16,7 +16,3 @@
 //= require jquery.tokeninput
 //= require twitter/bootstrap
 //= require_tree .
-
-$(document).ready(function(){
-    $('#loginColorbox').colorbox();
-});

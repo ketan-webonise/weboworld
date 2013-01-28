@@ -24,11 +24,16 @@ group :assets do
   gem "twitter-bootstrap-rails"
 
 end
+#image uploader
+gem "rmagick"
+gem "carrierwave"
+
+#video player
+gem 'jw_player_helper'
 
 #authentication gems
 gem 'devise'
 gem "omniauth-google-oauth2"
-#gem 'gmail-contacts', :require => "gmail-contacts"
 
 gem 'jquery-rails'
 gem 'pry-remote'

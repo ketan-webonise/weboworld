@@ -1,8 +1,8 @@
-<div class="span7">
-
+<div class="row">
+<div class="span7" style="float: left;">
   <div class="well the-fieldset">
     <div id="heading_recent_post">
-      <legend class="the-legend"> RECENT POST</legend>
+      <legend class="the-legend"> RECENT POST </legend>
     </div>
     <div class="pagination">
       <ol class="posts">
@@ -11,8 +11,22 @@
             <span class="timestamp">
                 Posted <%= time_ago_in_words(@post.created_at) %> ago.
             </span>
+            <span><%= image_tag @post.post_image_url if @post.post_image? %></span>
+            <span><%= video_player({:file => @post.video_link }) if @post.video_link? %></span>
         </li>
       </ol>
     </div>
   </div>
+</div>
+<div class="span2" style="float: right;">
+  <div class="well the-fieldset sidebar-nav">
+    <h4>Post Here...</h4>
+    <ul class="nav nav-list">
+      <li class="nav-header"></li>
+      <li><%= link_to "Create Post", new_user_post_path(params[:user_id])  %></li>
+      <li><%= link_to "Show all posts", user_posts_path(params[:user_id])  %></li>
+      <!--<li><%#= link_to "Link3", "/path3"  %></li>-->
+    </ul>
+  </div><!--/.well -->
+</div><!--/span-->
 </div>

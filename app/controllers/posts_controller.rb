@@ -18,4 +18,14 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
   end
+
+  def index
+    @posts = Post.find_all_by_user_id(params[:user_id])
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to user_posts_path(params[:user_id])
+  end
 end

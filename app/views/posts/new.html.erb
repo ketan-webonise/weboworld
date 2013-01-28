@@ -1,10 +1,61 @@
-<div class="span3">
-<%= form_for @post, :url => user_posts_path(@user.id), :method => :post  do |f| %>
-    <fieldset>
-      <legend>Create Post</legend>
-      <%= f.text_area :description, :size => '60x3',:placeholder => "Would you like to say something..." %>
-      <span class="help-block">eg. Had great weekend at Home.</span>
-      <%= f.submit "Post"%>
-    </fieldset>
-<% end %>
+<div class="span5">
+  <%= form_for @post, :url => user_posts_path(@user.id), :method => :post, :html => {:multipart => true}  do |f| %>
+      <fieldset>
+        <legend>Create Post</legend>
+        <div class="control-group">
+          <div class="controls">
+            <%= f.text_area :description, :size => '60x3',:placeholder => "Would you like to say something..." %>
+          </div>
+        </div>
+        <span class="help-block">eg. Had great weekend at Home.</span>
+        <span class="">
+          <div class="btn-group">
+            <button id="webo-add-image" class="btn" type="button">Add Image</button>
+            <button id="webo-add-video"  class="btn" type="button">Add Video</button>
+          </div>
+        </span>
+        <div id="webo-post-image" class="control-group">
+          <%= f.label :post_image, "Add Image", :class => 'control-label'  %>
+          <div class="controls">
+            <%= f.file_field :post_image, :class => 'file_field' %>
+          </div>
+        </div>
+        <div id="webo-post-video" class="control-group">
+          <%= f.label :video_link, "Add Video", :class => 'control-label'  %>
+          <div class="controls">
+            <%= f.url_field :video_link, :placeholder => "Past Youtube URL here" %>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <%= f.submit "Post"%>
+          </div>
+        </div>
+      </fieldset>
+  <% end %>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#webo-post-image').hide();
+      $('#webo-post-video').hide();
+
+      var post_description = new LiveValidation('post_description');
+      post_description.add( Validate.Presence );
+      post_description.add( Validate.Length, { maximum: 140 } );
+
+
+
+      $('#webo-add-image').click(function(){
+          $('#webo-post-image').show();
+          $('#post_video_link').val('');
+          $('#webo-post-video').hide();
+      });
+
+      $('#webo-add-video').click(function(){
+          $('#webo-post-video').show();
+          $('#post_post_image').val('');
+          $('#webo-post-image').hide();
+      });
+  });
+</script>
