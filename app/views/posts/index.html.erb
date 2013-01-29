@@ -4,19 +4,44 @@
       <div id="heading_recent_post">
         <legend class="the-legend"> RECENT POST</legend>
       </div>
-      <div class="pagination">
+      <div class="digg_pagination">
+        <%= will_paginate @posts, :container => false %>
         <ol class="posts">
+
           <% @posts.each do |post| %>
               <li>
-                <span class="content">
+                <!--<div class="row">-->
+                <div class="webo-video-image">
+                  <% if post.post_image?  %>
+                      <div class="span2">
+                      <%= image_tag post.post_image_url, :size => '80x80', :class => 'webo-image' %>
+                      </div>
+                  <% end %>
+                  <% if post.video_link? %>
+                      <div class="span2">
+                        <div id="webo-video">Loading the player...</div>
+                      </div>
+                      <script type="text/javascript">
+                          jwplayer("webo-video").setup({
+
+                              file: "<%= post.video_link%>",
+                              flashplayer: "../assets/player.swf",
+                              height: 200,
+                              width: 200
+
+                          });
+                      </script>
+
+                  <% end %>
+                </div>
+                <div class="content">
                   <%= post.description %>
-                  <%= link_to "Delete", user_post_path(current_user,post),:confirm => 'Are you sure you want to delete this post?', :method => :delete %>
+                  <%= link_to "Delete", user_post_path(current_user,post),:confirm => 'Are you sure you want to delete this post?', :method => :delete, :id => 'webo-delete-link' %>
+                </div>
+                <!--</div>-->
+                <span class="timestamp">
+                    Posted <%= time_ago_in_words(post.created_at) %> ago.
                 </span>
-            <span class="timestamp">
-                Posted <%= time_ago_in_words(post.created_at) %> ago.
-            </span>
-                <span><%= image_tag post.post_image_url if post.post_image? %></span>
-                <span><%= video_player({:file => post.video_link }) %></span>
               </li>
           <% end %>
         </ol>

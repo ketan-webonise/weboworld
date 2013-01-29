@@ -12,15 +12,22 @@ class PostsController < ApplicationController
       redirect_to user_post_path(params[:user_id], @post.id)
     else
       flash[:error] = "Post failed!"
+      logger.info("-------------#{@post.errors.inspect}")
+      redirect_to :back
+
     end
   end
 
   def show
     @post = Post.find(params[:id])
+    @user_who_commented = current_user
+    #@all_comments = @Post.comment_threads
+    #@comment = Comment.new
+    #logger.info("############{@all_comments.inspect}")
   end
 
   def index
-    @posts = Post.find_all_by_user_id(params[:user_id])
+    @posts = Post.order("created_at DESC").all.paginate(:page => params[:page], :per_page => 5);
   end
 
   def destroy
