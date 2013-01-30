@@ -92,7 +92,27 @@ textarea.LV_invalid_field:active {
 .well{
     background-color: #FDFCFC;
 }
+/*index post page*/
+#webo-delete-link {
+    float: right;
+    margin-top: 10px;
+    font-size: 12px;
+}
 
+.webo-image {
+    float: left;
+    margin: 10px 10px 10px 37px;
+    border: 3px ridge #D7EBFF;
+}
+#webo-show-comment-link{
+    float: right;
+    margin-top: 27px;
+    font-size: 12px;
+    margin-right: -35px;
+}
+.posts .webo-timestamp-index{
+    margin-right: -91px;
+}
 /* posts */
 
 .posts {
@@ -105,6 +125,7 @@ textarea.LV_invalid_field:active {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
     line-height: 20px;
+    margin-left: 6px;
 }
 
 .posts .content {
@@ -122,18 +143,9 @@ textarea.LV_invalid_field:active {
     margin-top: 68px;
     margin-right: -26px;
 }
-
-/*index post page*/
-#webo-delete-link {
-    float: right;
-    margin-top: 10px;
-    font-size: 12px;
-}
-
-.webo-image {
-    float: left;
-    margin: 10px 10px 10px 37px;
-    border: 3px ridge #D7EBFF;
+/*post-new-form*/
+#webo-new-post-submit-btn{
+    padding-top: 6px;
 }
 
 /*comment form */
@@ -175,4 +187,100 @@ p input[type="submit"] {
     background-repeat: repeat-x;
 }
 
+/*comment and reply*/
+.margin-comments {
+    list-style: none;
+    margin: 0;
+    margin-bottom: 40px;
+}
+
+.margin-comments .comment {
+    margin-bottom: 15px;
+}
+
+li {
+    line-height: 18px;
+}
+
+::selection {
+    background-color: #E64946 !important;
+    color: #fff;
+}
+
+.margin-comments {
+    list-style: none;
+}
+
+#comments .avatar {
+    float: right;
+    width: auto;
+    display: block;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+.comment-author-link {
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 10px;
+    float: left;
+}
+
+.comment-date-link {
+    font-size: 11px;
+    color: #A8A8A8;
+    display: inline-block;
+    font-style: italic;
+
+}
+
+.first-comment p {
+    margin-top: 15px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+.replay-buttton {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.depth-1 > [id^="comment-"], .depth-1 > [id*=" comment-"] {
+    padding-bottom: 25px;
+}
+[id^="comment-"], [id*=" comment-"] {
+    border: 1px solid #EBECED;
+    padding: 15px;
+    background: #f5f5f5;
+    position: relative;
+}
+
+.first-comment {
+    padding-top: 15px;
+    border-bottom: 1px solid #E7E7E7;
+}
+
+a.comment-reply-link {
+    padding: 3px 5px;
+    text-transform: uppercase;
+    font-size: 11px;
+    background-color: black;
+    color: white;
+    display: inline-block;
+}
+
+/*replay*/
+ul.children {
+    list-style: none;
+}
+
+ul.children {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.depth-2 {
+    margin-top: 15px;
+}
 

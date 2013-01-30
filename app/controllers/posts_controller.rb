@@ -12,7 +12,6 @@ class PostsController < ApplicationController
       redirect_to user_post_path(params[:user_id], @post.id)
     else
       flash[:error] = "Post failed!"
-      logger.info("-------------#{@post.errors.inspect}")
       redirect_to :back
 
     end
@@ -21,9 +20,16 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user_who_commented = current_user
-    #@all_comments = @Post.comment_threads
-    #@comment = Comment.new
-    #logger.info("############{@all_comments.inspect}")
+    comments = @post.comments.all
+    parent_child_hash = Hash.new
+    @nested_comment_list = Array.new
+
+    comments.select{|i| i.parent_id==nil }.each do |comment|
+      child_comments = comments.select{|cmt| cmt.parent_id==comment.id&&cmt.parent_id!=nil}
+      parent_child_hash = {"comment" => comment, "child_comments" => child_comments }
+      @nested_comment_list.push(parent_child_hash);
+    end
+    @comment = Comment.new
   end
 
   def index

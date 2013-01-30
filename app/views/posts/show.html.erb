@@ -7,75 +7,95 @@
       <div class="pagination">
         <ol class="posts">
           <li>
-           <div class="row">
-            <div class="webo-video-image">
-              <% if @post.post_image?  %>
-                  <div class="span2">
-                    <%= image_tag @post.post_image_url, :size => '80x80', :class => 'webo-image' %>
-                  </div>
-              <% end %>
-              <% if @post.video_link? %>
-                  <div class="span2">
-                    <div id="webo-video">Loading the player...</div>
-                  </div>
-                  <script type="text/javascript">
-                      jwplayer("webo-video").setup({
+            <div class="row">
+              <div class="webo-video-image">
+                <% if @post.post_image?  %>
+                    <div class="span2">
+                      <%= image_tag @post.post_image_url, :size => '80x80', :class => 'webo-image' %>
+                    </div>
+                <% end %>
+                <% if @post.video_link? %>
+                    <div class="span2">
+                      <div id="webo-video">Loading the player...</div>
+                    </div>
+                    <script type="text/javascript">
+                        jwplayer("webo-video").setup({
 
-                          file: "<%= @post.video_link%>",
-                          flashplayer: "../assets/player.swf",
-                          height: 200,
-                          width: 200
+                            file: "<%= @post.video_link%>",
+                            flashplayer: "../assets/player.swf",
+                            height: 200,
+                            width: 200
 
-                      });
-                  </script>
-              <% end %>
-            </div>
-            <div class="span2 content">
-              <%= @post.description %>
-            </div>
-            <div class="">
-              <%= link_to "Delete", user_post_path(current_user,@post),:confirm => 'Are you sure you want to delete this post?', :method => :delete, :id => 'webo-delete-link' %>
-            </div>
-            <div class="timestamp">
+                        });
+                    </script>
+                <% end %>
+              </div>
+              <div class="span2 content">
+                <%= @post.description %>
+              </div>
+              <div class="">
+                <%= link_to "Delete", user_post_path(@post.user_id,@post),:confirm => 'Are you sure you want to delete this post?', :method => :delete, :id => 'webo-delete-link' %>
+              </div>
+              <div class="timestamp">
                 Posted <%= time_ago_in_words(@post.created_at) %> ago.
+              </div>
+
             </div>
-            <!--<span>-->
 
-              <!--<p class="comment-form-comment">-->
-                <!--<label for="comment">Comment</label>-->
-                <!--<textarea id="comment" name="comment" cols="45" rows="8" aria-required="true">-->
-                <!--</textarea>-->
-              <!--</p>-->
+            <div class="row">
+              <ol>
+                <% @nested_comment_list.each do |parent_child| %>
+                    <li class="comment odd alt thread-even depth-1" id="li-comment-<%= parent_child["comment"]["id"]%>">
+                      <div id="comment-<%= parent_child["comment"]["id"]%>" class="first-comment">
+                        <div class="entry-comment-meta">
+                          <div class="comment-author-link">
+                            <%= @user_who_commented.name %>
+                          </div><!-- comment-author-link -->
+                          <div class="comment-date-link">
+                            <%= parent_child["comment"]["created_at"] %>
+                          </div><!-- comment-date-link -->
+                          <p><%= parent_child["comment"]["comment"] %></p>
+                        </div><!-- entry-comment-meta -->
 
-              <!--<p class="form-submit">-->
-                <!--<input name="submit" type="submit" id="submit" value="Post Comment">-->
-                <!--<input type="hidden" name="comment_post_ID" value="160" id="comment_post_ID">-->
-                <!--<input type="hidden" name="comment_parent" id="comment_parent" value="0">-->
-              <!--</p>-->
+                        <div class="replay-buttton">
+                          <a class="comment-reply-link" href="#webo-reply-comment" rel ="<%= parent_child["comment"]["id"]%>">Reply</a>
+                        </div><!-- replay-buttton -->
+                      </div> <!-- end #comment-ID -->
 
-              <%#= form_for [@post, @comment], :url => user_post_comments_path(current_user,@post), :method => :post do |f|%>
-                <%#= f.text_area :body %>
-                  <%#= f.submit %>
-              <%# end %>
-            <!--</span>-->
-           </div>
-            <!--<div class="row">-->
-              <!--<ul>-->
-                <!--<%# @all_comments.each do |cmt| %>-->
-                    <!--<li>-->
-                      <!--<%# cmt.body %>-->
-                    <!--</li>-->
-                <!--<%# end %>-->
-              <!--</ul>-->
-            <!--</div>-->
-            <!--<div class="row">-->
-              <!--<div class="span5 offset1">-->
-              <!--<%#= form_for [@post, @comment], :url => user_post_comments_path(current_user,@post), :method => :post do |f|%>-->
-              <!--<p><%#= f.text_area :body, :size => '80x2', :id => 'webo-comment-textarea' %></p>-->
-              <!--<p><%#= f.submit "Post Comment"%></p>-->
-              <!--<%# end %>-->
-              <!--</div>-->
-            <!--</div>-->
+                      <ol class="children">
+                        <% parent_child["child_comments"].each do |child| %>
+                            <li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="li-comment-<%= child["id"]%>">
+                              <div id="comment-<%= child["id"]%>" class="first-comment">
+                                <div class="entry-comment-meta">
+                                  <div class="comment-author-link">
+                                    <%= get_child_comment_user(child["user_id"]) %>
+                                  </div><!-- comment-author -->
+                                  <div class="comment-date-link">
+                                    <%= child["created_at"] %>
+                                  </div><!-- comment-date -->
+                                  <p><%= child["comment"] %> </p>
+                                </div><!-- entry-comment-meta -->
+
+                                <div class="replay-buttton">
+
+                                </div><!-- replay-buttton -->
+                              </div> <!-- end #comment-ID -->
+                            </li>
+                        <% end %>
+                      </ol>
+                    </li>
+                <% end %>
+              </ol>
+            </div>
+            <div class="row">
+              <div class="span5 offset1" id="webo-reply-comment">
+                <%= form_for [@post, @comment], :url => user_post_comments_path(@post.user_id,@post), :method => :post do |f|%>
+                    <%= hidden_field_tag :parent_id, nil %>
+                    <p><%= f.text_area :comment, :size => '80x2', :id => 'webo-comment-textarea' %></p>
+                    <p><%= f.submit "Post Comment"%></p>
+                <% end %>
+              </div>
+            </div>
           </li>
         </ol>
       </div>
@@ -93,3 +113,13 @@
     </div><!--/.well -->
   </div><!--/span-->
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".comment-reply-link").on("click",function(){
+            var id = $(this).attr("rel");
+            $("#parent_id").val(id);
+
+        });
+    });
+</script>
