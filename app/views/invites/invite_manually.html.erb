@@ -1,10 +1,10 @@
 <div class="span3 offset1">
-  <%= form_tag send_mail_invites_path(@emails), :method => :get do%>
+  <%= form_tag send_mail_invites_path, :method => 'get'    do%>
       <fieldset>
         <legend>Invites Friends</legend>
         <p>
           Enter Friend's email<br />
-          <%= text_field_tag "email" %>
+          <%= text_area_tag "email",nil, :class => 'email'%>
         </p>
         <span class="help-block">eg. pansinghtomar@yopmail.com.</span>
         <p><%= submit_tag 'Invites' %></p>
@@ -13,10 +13,13 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('#email').tokenInput('/invites/search_emails.json', {
-            crossDomain: false,
-            prePopulate: $("#email").data("pre" )
-        });
-    });
+//    $(document).ready(function(){
+//        $('#id').tokenInput('/invites/search_emails.json', {
+//            crossDomain: false,
+//            prePopulate: $("#id").data("pre" )
+//        });
+//    });
+$(document).ready(function() {
+    $('textarea.email').tokenField();
+});
 </script>

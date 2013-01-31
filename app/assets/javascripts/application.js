@@ -13,6 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require livevalidation_standalone
-//= require jquery.tokeninput
+//= require jquery.token-field
 //= require twitter/bootstrap
 //= require_tree .

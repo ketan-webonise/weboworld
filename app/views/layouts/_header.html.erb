@@ -20,12 +20,12 @@
         </form>
         <ul class="nav pull-right">
           <%if user_signed_in?  %>
-              <!--<li><a href="#">Link</a></li>-->
+              <li><%= link_to "Post", user_posts_path(current_user)%></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Invite Friends <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to "Invite Gmail contacts", importcontacts_path %></li>
-                  <li><%= link_to "Invite Manually", invite_manually_path, "data-toggle" => "modal", :class => "" %></li>
+                  <li><%= link_to "Invite Gmail contacts", importcontacts_import_index_path %></li>
+                  <li><%= link_to "Invite Manually", invite_manually_invites_path, "data-toggle" => "modal", :class => "" %></li>
                 </ul>
               </li>
               <li class="divider-vertical"></li>
@@ -33,7 +33,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><%= link_to "Edit Profile" ,edit_user_registration_path, :class => "" %></li>
-                  <li><%= link_to "Change Password" ,edit_user_password_path, :class => "" %></li>
+                  <!--<li><%= link_to "Change Password" ,edit_user_password_path, :class => "" %></li>-->
                   <li class="divider"></li>
                   <li><%= link_to "Sign out" ,destroy_user_session_path, :method => :delete, :class => "" %></li>
                 </ul>

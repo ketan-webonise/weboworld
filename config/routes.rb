@@ -1,6 +1,6 @@
 Weboworld::Application.routes.draw do
 
-  devise_for :users,  :controllers => { :passwords => "sessions", :omniauth_callbacks => "users/omniauth_callbacks"}
+  devise_for :users,  :controllers => { :passwords => "passwords", :omniauth_callbacks => "users/omniauth_callbacks", :confirmations => 'confirmations'}
 
   resources :users do
     resources :posts do
@@ -8,23 +8,23 @@ Weboworld::Application.routes.draw do
     end
   end
 
-  #resources :import do
-  #  collection do
-  #    get :authorise
-  #    get :authenticate
-  #  end
-  #end
-  #
+  resources :import do
+    collection do
+      get :authorise, :as => "/googleauth"
+      get :authenticate, :as => "/importcontacts"
+    end
+  end
+
   resources :invites do
     collection do
-      #get :invite_manually, :as => "/invite_manually"
+      get :invite_manually#, :as => "/invite_manually"
       get :search_emails
       get :send_mail
     end
   end
-  match "/googleauth" => "import#authorise"
-  match "/importcontacts" => "import#authenticate"
-  match "/invite_manually" => "invites#invite_manually"
+  #match "/googleauth" => "import#authorise"
+  #match "/importcontacts" => "import#authenticate"
+  #match "/invite_manually" => "invites#invite_manually"
   #match "/invites" => "invites#index"
   #resources :callbacks
   # The priority is based upon order of creation:

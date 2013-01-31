@@ -23,7 +23,7 @@
 
                             file: "<%= @post.video_link%>",
                             flashplayer: "../assets/player.swf",
-                            height: 200,
+                            height: 150,
                             width: 200
 
                         });
@@ -37,8 +37,9 @@
                 <%= link_to "Delete", user_post_path(@post.user_id,@post),:confirm => 'Are you sure you want to delete this post?', :method => :delete, :id => 'webo-delete-link' %>
               </div>
               <div class="timestamp">
-                Posted <%= time_ago_in_words(@post.created_at) %> ago.
+                 <div class="webo-timstamp-show">Posted <%= time_ago_in_words(@post.created_at) %> ago.</div>
               </div>
+              <div class="auther-post-name-show">Posted By : <%=   get_child_comment_user(@post.user_id)%></div>
 
             </div>
 
@@ -49,7 +50,7 @@
                       <div id="comment-<%= parent_child["comment"]["id"]%>" class="first-comment">
                         <div class="entry-comment-meta">
                           <div class="comment-author-link">
-                            <%= @user_who_commented.name %>
+                            <%= get_child_comment_user(parent_child["comment"]["user_id"]) %>
                           </div><!-- comment-author-link -->
                           <div class="comment-date-link">
                             <%= parent_child["comment"]["created_at"] %>
@@ -89,7 +90,7 @@
             </div>
             <div class="row">
               <div class="span5 offset1" id="webo-reply-comment">
-                <%= form_for [@post, @comment], :url => user_post_comments_path(@post.user_id,@post), :method => :post do |f|%>
+                <%= form_for [@post, @comment], :url => user_post_comments_path(current_user,@post), :method => :post do |f|%>
                     <%= hidden_field_tag :parent_id, nil %>
                     <p><%= f.text_area :comment, :size => '80x2', :id => 'webo-comment-textarea' %></p>
                     <p><%= f.submit "Post Comment"%></p>
@@ -106,8 +107,8 @@
       <h4>Post Here...</h4>
       <ul class="nav nav-list">
         <li class="nav-header"></li>
-        <li><%= link_to "Create Post", new_user_post_path(params[:user_id])  %></li>
-        <li><%= link_to "Show all posts", user_posts_path(params[:user_id])  %></li>
+        <li><%= link_to "Create Post", new_user_post_path(current_user)  %></li>
+        <li><%= link_to "Show all posts", user_posts_path(current_user)  %></li>
         <!--<li><%#= link_to "Link3", "/path3"  %></li>-->
       </ul>
     </div><!--/.well -->

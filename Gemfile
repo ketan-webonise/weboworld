@@ -38,6 +38,8 @@ gem "omniauth-google-oauth2"
 #commenting
 #gem 'acts_as_commentable_with_threading'
 gem 'acts_as_commentable', '3.0.1'
+# console table formating
+gem 'hirb'
 
 gem 'jquery-rails'
 gem 'pry-remote'

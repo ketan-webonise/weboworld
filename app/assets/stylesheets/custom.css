@@ -1,3 +1,12 @@
+/*Body*/
+body{
+    background-color: #e5e6e7;
+}
+/*index.html*/
+#home-title{
+color: rgb(243, 48, 102);
+}
+
 /*Header*/
 #webo-navbar-inner{
 
@@ -110,8 +119,28 @@ textarea.LV_invalid_field:active {
     font-size: 12px;
     margin-right: -35px;
 }
-.posts .webo-timestamp-index{
-    margin-right: -91px;
+.webo-timstamp-index {
+    margin-top: -37px;
+    margin-right: -88px;
+}
+.webo-timstamp-show {
+    margin-top: -7px;
+    margin-right: -36px;
+}
+
+.auther-post-name-index {
+    float: right;
+    margin-top: 23px;
+    margin-right: -90px;
+    font-family: verdana;
+    color: darkcyan;
+}
+.auther-post-name-show {
+    float: right;
+    margin-top: 23px;
+    margin-right: -34px;
+    font-family: verdana;
+    color: darkcyan;
 }
 /* posts */
 
@@ -124,7 +153,7 @@ textarea.LV_invalid_field:active {
     overflow: auto;
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
-    line-height: 20px;
+    line-height: 25px;
     margin-left: 6px;
 }
 
@@ -134,14 +163,11 @@ textarea.LV_invalid_field:active {
     margin-left: 57px;
     font-size: 18px;
     color: #424242;
-
 }
 .posts .timestamp {
     color: #d3d3d3;
     font-size: 13px;
     float: right;
-    margin-top: 68px;
-    margin-right: -26px;
 }
 /*post-new-form*/
 #webo-new-post-submit-btn{
@@ -220,7 +246,6 @@ li {
 }
 
 .comment-author-link {
-    font-weight: bold;
     display: inline-block;
     margin-right: 10px;
     float: left;
@@ -235,7 +260,9 @@ li {
 }
 
 .first-comment p {
+    color: rgb(218, 69, 111);
     margin-top: 15px;
+    font-weight: bold;
 }
 
 p {
@@ -259,6 +286,7 @@ p {
 .first-comment {
     padding-top: 15px;
     border-bottom: 1px solid #E7E7E7;
+    font-weight: bold;
 }
 
 a.comment-reply-link {

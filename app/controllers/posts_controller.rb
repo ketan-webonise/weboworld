@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :authenticate_user!
   def new
     @user = User.find(params[:user_id])
     @post = Post.new
@@ -19,7 +20,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @user_who_commented = current_user
+    @user_who_commented = User.find(@post.user_id)
     comments = @post.comments.all
     parent_child_hash = Hash.new
     @nested_comment_list = Array.new
