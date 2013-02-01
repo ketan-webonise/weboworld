@@ -21,20 +21,12 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user_who_commented = User.find(@post.user_id)
-    comments = @post.comments.all
-    parent_child_hash = Hash.new
-    @nested_comment_list = Array.new
-
-    comments.select{|i| i.parent_id==nil }.each do |comment|
-      child_comments = comments.select{|cmt| cmt.parent_id==comment.id&&cmt.parent_id!=nil}
-      parent_child_hash = {"comment" => comment, "child_comments" => child_comments }
-      @nested_comment_list.push(parent_child_hash);
-    end
+    @nested_comment_list = Post.nested_comment(@post)
     @comment = Comment.new
   end
 
   def index
-    @posts = Post.order("created_at DESC").all.paginate(:page => params[:page], :per_page => 5);
+    @posts = Post.get_ordered_comments(params[:page])
   end
 
   def destroy
