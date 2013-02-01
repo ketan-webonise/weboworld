@@ -6,6 +6,7 @@ require 'rexml/document'
 
 class ImportController < ApplicationController
 
+  #send request to google to get google contact scope
   def authenticate
     @title = "Google Authetication"
 
@@ -14,6 +15,7 @@ class ImportController < ApplicationController
     redirect_to google_root_url
   end
 
+  #callback method from google to handle code
   def authorise
     begin
       emails = InviteFriend.get_google_user_contact(params[:code])
@@ -21,7 +23,7 @@ class ImportController < ApplicationController
       InviteFriend.send_invitation_mails(emails,user)
       flash[:success] = "Invitation has been sent to your Google contacts."
     rescue Exception => ex
-      ex.message
+      logger.info ex.message
       flash[:error] = "Invitation to Ur Google friends failed"
     end
     redirect_to root_path

@@ -7,13 +7,14 @@ class Post < ActiveRecord::Base
   mount_uploader :post_image, PostImageUploader
   validates :description, :presence => true
 
-  def self.create_comment(comment,post_id,user_id,parent_id)
-    post = Post.find(post_id)
-    post.comments.create(:comment => comment, :user_id => user_id, :parent_id => parent_id )
+  #comment on post
+  def create_comment(comment,user_id,parent_id)
+        self.comments.create(:comment => comment, :user_id => user_id, :parent_id => parent_id )
   end
 
-  def self.nested_comment(post)
-    comments = post.comments.all
+  #getting comments on post with parent comment associated with children comments
+  def nested_comment()
+    comments = self.comments
     parent_child_hash = Hash.new
     nested_comment_list = Array.new
 
@@ -25,8 +26,9 @@ class Post < ActiveRecord::Base
     nested_comment_list
   end
 
+  #showing all comments on post in descending order
   def self.get_ordered_comments(page)
-    posts = Post.order("created_at DESC").all.paginate(:page => page, :per_page => 4);
+    posts = order("created_at DESC").all.paginate(:page => page, :per_page => 4);
     posts
   end
 end

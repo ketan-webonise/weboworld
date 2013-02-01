@@ -12,14 +12,10 @@
               <li>
                 <div class="span2 webo-video-image">
                   <% if post.post_image?  %>
-                      <!--<div class="span2">-->
-                        <%= image_tag post.post_image_url, :size => '80x80', :class => 'webo-image' %>
-                      <!--</div>-->
+                     <%= image_tag post.post_image_url, :size => '80x80', :class => 'webo-image' %>
                   <% end %>
                   <% if post.video_link? %>
-                      <!--<div class="span2">-->
                         <div id="webo-video">Loading the player...</div>
-                      <!--</div>-->
                       <script type="text/javascript">
                           jwplayer("webo-video").setup({
 
@@ -40,10 +36,7 @@
                     <div class="timestamp webo-timstamp-index">Posted <%= time_ago_in_words(post.created_at) %> ago.</div>
 
                   <%= link_to "Delete", user_post_path(post.user_id,post),:confirm => 'Are you sure you want to delete this post?', :method => :delete, :class => 'webo-delete-link' %>
-                  <!--<span class="webo-show-comment-link">-->
                   <%=link_to "Show comments", user_post_path(post.user_id, post), :class =>'webo-show-comment-link' %>
-                  <!--</span>-->
-
                   <div class="auther-post-name-index">Posted By : <%=   get_child_comment_user(post.user_id)%></div>
                 </div>
               </li>
@@ -59,8 +52,6 @@
       <ul class="nav nav-list">
         <li class="nav-header"></li>
         <li><%= link_to "Create Post", new_user_post_path(params[:user_id])  %></li>
-        <!--<li><%#= link_to "Link2", "/path2"  %></li>-->
-        <!--<li><%#= link_to "Link3", "/path3"  %></li>-->
       </ul>
     </div><!--/.well -->
   </div><!--/span-->

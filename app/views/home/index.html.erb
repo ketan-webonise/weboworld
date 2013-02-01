@@ -7,7 +7,9 @@
     including automatic notifications when they update their profile. Additionally, users may join common-interest user groups,
     organized by workplace, school or college, or other characteristics, and categorize their friends into lists such as
     "People From Work" or "Close Friends".</p>
-  <p><%=link_to "Sign Up »", new_user_registration_path, :class => "btn btn-primary btn-large" %></p>
+  <%if user_signed_in?  %>
+      <p><%=link_to "Sign Up »", new_user_registration_path, :class => "btn btn-primary btn-large" %></p>
+  <% end %>
 </div>
 
 <!-- Example row of columns -->

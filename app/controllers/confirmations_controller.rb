@@ -1,4 +1,6 @@
 class ConfirmationsController < Devise::ConfirmationsController
+
+  #overriding confirmation controller to redirect user to sign up page after clicking on confirmation link in mail
   def show
     self.resource = resource_class.confirm_by_token(params[:confirmation_token])
 

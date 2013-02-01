@@ -6,10 +6,10 @@ class InvitesController < ApplicationController
   def invite_manually
   end
 
+  #send mails to google friends on invite google friend activity
   def send_mail
     InviteFriendMailer.invite_friends(current_user.email,params[:email]).deliver
     redirect_to root_path , :notice => "Invitation has been sent to your contacts."
-
   end
 
   #def search_emails

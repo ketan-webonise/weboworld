@@ -14,6 +14,7 @@ class InviteFriend < ActiveRecord::Base
   #  return friend_info.friend_email
   #end
 
+  # fetching google contact
   def self.get_google_user_contact(code)
     begin
       @title = "Google Authetication"
@@ -45,6 +46,7 @@ class InviteFriend < ActiveRecord::Base
     end
   end
 
+  #sending mail to google friends on invite activity
   def self.send_invitation_mails(emails,user)
     emails.each do |email|
       InviteFriend.create(:friend_email => email,:user_id => user.id, :name => email[/[^@]+/])
