@@ -14,4 +14,5 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :post
   attr_accessible :title, :comment, :user_id, :parent_id
+  validates :comment, :user_id, :presence => true
 end

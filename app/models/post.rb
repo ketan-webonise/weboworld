@@ -26,7 +26,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.get_ordered_comments(page)
-    posts = Post.order("created_at DESC").all.paginate(:page => page, :per_page => 5);
+    posts = Post.order("created_at DESC").all.paginate(:page => page, :per_page => 4);
     posts
   end
 end
